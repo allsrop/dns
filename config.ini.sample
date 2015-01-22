@@ -1,0 +1,6 @@
+[pux]
+file=pux/mux.php
+
+[dns]
+dir=conf
+ns=192.168.201.103
