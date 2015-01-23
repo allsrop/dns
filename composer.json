@@ -17,7 +17,7 @@
         "zerkalica/phpcs": "dev-master"
     },
     "require": {
-	"ronmi/fruit": "~0.1.0",
+	"ronmi/fruit": "~0.1",
 	"corneltek/lazyrecord": "~1.18.5"
     },
     "autoload": {

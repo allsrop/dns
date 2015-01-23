@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "476b4636747ef0d063d8f7f5db64fd5b",
+    "hash": "e9aab26fc029eed959c3414bf044d50c",
     "packages": [
         {
             "name": "corneltek/cascading-attribute",
@@ -489,11 +489,11 @@
         },
         {
             "name": "ronmi/fruit",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "http://git.ronmi.tw/ronmi/fruit.git",
-                "reference": "b51f304f35c21e5d3af8133571e6ca6677f3043c"
+                "reference": "1c22ee4b34ed0f3312bb7b663b75eaa6329b32ca"
             },
             "require": {
                 "corneltek/cliframework": "2.2.*",
@@ -528,7 +528,7 @@
                 }
             ],
             "description": "Fast, lightweight and simple PHP framework",
-            "time": "2015-01-21 06:05:49"
+            "time": "2015-01-23 04:26:32"
         },
         {
             "name": "symfony/yaml",
