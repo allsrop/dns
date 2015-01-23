@@ -37,6 +37,7 @@ class DomainController extends \Fruit\AbstractController
         Record::delete()->where()->equal('domain', $id)->execute();
         $domain->delete();
         $ret['result'] = true;
+        CLIHelper::update();
         return json_encode($ret);
     }
 
@@ -53,6 +54,7 @@ class DomainController extends \Fruit\AbstractController
         } catch (Exception $e) {
             $ret['message'] = $e->getMessage();
         }
+        CLIHelper::update();
         return json_encode($ret);
     }
 

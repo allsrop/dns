@@ -42,6 +42,7 @@ class RecordController extends AbstractController
                 );
             }
         }
+        CLIHelper::update();
 
         return json_encode($ret);
     }
@@ -56,6 +57,7 @@ class RecordController extends AbstractController
             $record->delete();
             $ret['result'] = true;
         }
+        CLIHelper::update();
         return json_encode($ret);
     }
 }
