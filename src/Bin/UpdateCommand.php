@@ -31,7 +31,7 @@ class UpdateCommand extends Command
         }
 
         $zone_tmpl = "zone \"%s\" {\n  type master;\n  file \"%s\";\n};\n";
-        $db_tmpl = "%s IN SOA %s. root.%s. ( %d 604800 86400 2419200 604800 )\n";
+        $db_tmpl = "%s. IN SOA %s. root.%s. ( %d 604800 86400 2419200 604800 )\n";
         $rec_tmpl = "%-32s IN %-16s %s\n";
         $conf = '';
         $domains = new DomainCollection;
