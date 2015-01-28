@@ -64,5 +64,6 @@ class UpdateCommand extends Command
         }
         file_put_contents($db . '/conf.rde', $conf);
         $l->info($conf);
+        shell_exec('/usr/bin/sudo /usr/sbin/rndc reload');
     }
 }
