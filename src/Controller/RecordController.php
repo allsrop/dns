@@ -12,6 +12,26 @@ use Exception;
 
 class RecordController extends AbstractController
 {
+    public function dumpAction()
+    {
+        $config = $this->getSingleton()->getConfig();
+        $records = new RecordCollection;
+        $ret = array();
+        header('Content-Type: text/plain; charset=utf8');
+        header('Content-Disposition: attachment; filename="hosts.txt"');
+        foreach ($records as $r) {
+            $name = $r->getName();
+            $ns = $config->get('dns', 'ns');
+            $cmd = sprintf("/usr/bin/dig %s @%s|grep -P 'IN\\s+A\\s+([0-9]+\\.){3}[0-9]+'|grep --color=never -oP '([0-9]+\\.){3}[0-9]+'", $name, $ns);
+            $output = explode("\n", shell_exec($cmd));
+            $output = $output[0];
+            if (preg_match('/([0-9]+\.){3}[0-9]+/', $output) == 1) {
+                array_push($ret, sprintf('%s %s', $output, $name));
+            }
+        }
+        return implode("\n", $ret);
+    }
+
     public function createAction()
     {
         $ret = array('result' => false);

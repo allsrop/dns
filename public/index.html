@@ -6,72 +6,51 @@
     <link href="css/bootstrap-theme.min.css" rel="stylesheet"/>
     <script src="js/angular.min.js"></script>
     <script src="js/app.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.css"/>
+    <!-- Angular Material Dependencies -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.js"></script>
+    <script src="//rawgit.com/angular/bower-material/master/angular-material.js"></script>
   </head>
   <body ng-controller="DNSCtrl">
-    <div class="container">
-      <div class="btn btn-primary glyphicon glyphicon-edit" ng-click="showDomainForm()" ng-hide="domain_show">
-	Add domain
-      </div>
-      <div ng-show="domain_show" class="panel panel-primary ng-hide container-fluid">
-	<div class="panel-heading row">
-	  <h3 class="panel-title col-xs-11">Add a domain</h3>
-	  <button class="btn btn-default glyphicon glyphicon-remove" ng-click="hideDomainForm()"></button>
-	</div>
-	<div class="panel-body row">
-	  <span class="col-xs-3 col-md-2">Domain name:</span>
-	  <input ng-model="new_domain_name" class="col-xs-8" />
-	  <span class="col-xs-2">
-	    <button class="btn btn-primary" disabled="disabled" ng-click="doAddDomain(new_domain_name)" ng-disabled="!new_domain_name.length">Send</button>
-	  </span>
-	</div>
-      </div>
-    </div>
-    <div ng-repeat="domain in domains" style="magrin:10px;">
-      <div class="panel panel-default container" ng-hide="domain.disabled">
-	<div class="row panel-heading">
-	  <h3 class="col-xs-9 panel-title">{{domain.domain}}</h3>
-	  <button class="btn btn-danger glyphicon glyphicon-edit" ng-click="showRecordForm(domain)"> Add Record</button>
-	  <button class="btn btn-danger glyphicon glyphicon-trash" ng-click="delDomain(domain)"> Delete</button>
-	</div>
-	<div class="panel-body">
-	  <div ng-show="domain.record_show" class="panel panel-primary ng-hide container-fluid">
-	    <div class="panel-heading row">
-	      <h3 class="panel-title col-xs-11">Add a record</h3>
-	      <button class="btn btn-default glyphicon glyphicon-remove" ng-click="hideRecordForm(domain)"></button>
-	    </div>
-	    <div class="panel-body">
-	      <div class="row">
-		<span class="col-xs-2 col-md-1">Source:</span>
-		<input ng-model="domain.new_record_source" class="col-xs-5" />
+    <div layout="row" layout-fill>
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md')">
+	<md-toolbar>
+	  <h1 class="md-toolbar-tools">Domain Management</h1>
+	</md-toolbar>
+	<md-content class="md-padding" layout="column" layout-align="center start">
+	  <md-button ng-click="showDomainForm($event)">
+	    Add domain
+	  </md-button>
+	  <md-button ng-click="showRecordForm($event,domains[selectedIndex])">
+	    Add record in {{domains[selectedIndex].domain}}
+	  </md-button>
+	  <md-button href="r/dump">
+	    Download host file
+	  </md-button>
+	  <md-button ng-click="delDomain($event,domains[selectedIndex])" class="md-warn">
+	    Delete whole domain ({{domains[selectedIndex].domain}})
+	  </md-button>
+	</md-content>
+      </md-sidenav>
+      <md-tabs md-selected="selectedIndex" flex md-swipe-right="showNav()">
+	<md-tab ng-repeat="domain in domains" label="{{domain.domain}}">
+	  <md-card ng-repeat="record in domain.records">
+	    <md-card-content>
+	      <div layout="row">
+		<div flex-gt-md="35" flex="30">{{record.source}}</div>
+		<div flex-gt-md="10" flex="20">{{record.type}}</div>
+		<div flex>{{record.dest}}</div>
+		<div>
+		  <md-button ng-click="delRecord($event,domain,record)" aria-label="delete record">
+		    <span class="glyphicon glyphicon-trash"></span>
+		  </md-button>
+		</div>
 	      </div>
-	      <div class="row">
-		<span class="col-xs-2 col-md-1">Target:</span>
-		<input ng-model="domain.new_record_target" class="col-xs-5" />
-	      </div>
-	      <div class="row">
-		<span class="col-xs-2 col-md-1">Type:</span>
-		<select ng-model="domain.new_record_type" class="col-xs-1">
-		  <option value="A">A</option>
-		  <option value="CNAME">CNAME</option>
-		</select>
-		<span class="col-xs-1">
-		  <button class="btn btn-primary" disabled="disabled" ng-click="doAddRecord(domain)" ng-disabled="!domain.new_record_source">Send</button>
-		</span>
-	      </div>
-	    </div>
-	  </div>
-	  <ul class="list-group">
-	    <li class="list-group-item container-fluid" ng-repeat="record in domain.records">
-	      <div class="row">
-		<span class="col-xs-2">{{record.source}}</span>
-		<span class="col-xs-1">{{record.type}}</span>
-		<span class="col-xs-8">{{record.dest}}</span>
-		<button class="btn btn-danger glyphicon glyphicon-trash" ng-click="delRecord(domain, record)"></button>
-	      </div>
-	    </li>
-	  </ul>
-	</div>
-      </div>
+	    </md-card-content>
+	  </md-card>
+	</md-tab>
+      </md-tabs>
     </div>
   </body>
 </html>

@@ -25,8 +25,8 @@ class DomainController extends \Fruit\AbstractController
 
     public function deleteAction()
     {
-        @$params = json_decode(file_get_contents('php://input'), true);
-        @$id = $params['id'];
+        $params = Input::allInOne();
+        $id = $params['id'];
         $domain = new Domain($id);
         $ret = array(
             'result' => false,
