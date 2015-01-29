@@ -18,7 +18,7 @@
   <body ng-controller="DNSCtrl">
     <div layout="row">
       <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md')">
-	<md-toolbar flex>
+	<md-toolbar>
 	  <h1 class="md-toolbar-tools">Domain Management</h1>
 	</md-toolbar>
 	<md-content class="md-padding" layout="column" layout-align="center start">
@@ -39,7 +39,7 @@
       <div layout="column" layout-fill>
 	<md-toolbar>
 	  <div layout="row" class="md-toolbar-tools">
-	    <md-button ng-click="showNav()">
+	    <md-button ng-click="showNav()" hide-gt-md>
 	      <span class="glyphicon glyphicon-menu-hamburger"></span>
 	    </md-button>
 	    <span flex>RDE DNS Management</span>
