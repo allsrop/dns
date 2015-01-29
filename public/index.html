@@ -1,6 +1,7 @@
 <html ng-app="rdedns">
   <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
     <title>RDE DNS management</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/bootstrap-theme.min.css" rel="stylesheet"/>
@@ -15,8 +16,8 @@
     <script src="js/app.js"></script>
   </head>
   <body ng-controller="DNSCtrl">
-    <div layout="row" layout-fill>
-      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md')">
+    <div layout="row">
+      <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md')">
 	<md-toolbar>
 	  <h1 class="md-toolbar-tools">Domain Management</h1>
 	</md-toolbar>
@@ -35,24 +36,34 @@
 	  </md-button>
 	</md-content>
       </md-sidenav>
-      <md-tabs md-selected="selectedIndex" flex md-swipe-right="showNav()">
-	<md-tab ng-repeat="domain in domains" label="{{domain.domain}}">
-	  <md-card ng-repeat="record in domain.records">
-	    <md-card-content>
-	      <div layout="row">
-		<div flex-gt-md="35" flex="30">{{record.source}}</div>
-		<div flex-gt-md="10" flex="20">{{record.type}}</div>
-		<div flex>{{record.dest}}</div>
-		<div>
-		  <md-button ng-click="delRecord($event,domain,record)" aria-label="delete record">
-		    <span class="glyphicon glyphicon-trash"></span>
-		  </md-button>
+      <div layout="column" layout-fill>
+	<md-toolbar>
+	  <div layout="row" class="md-toolbar-tools">
+	    <md-button ng-click="showNav()">
+	      <span class="glyphicon glyphicon-menu-hamburger"></span>
+	    </md-button>
+	    <span flex>RDE DNS Management</span>
+	  </div>
+	</md-toolbar>
+	<md-tabs md-selected="selectedIndex" flex>
+	  <md-tab ng-repeat="domain in domains" label="{{domain.domain}}">
+	    <md-card ng-repeat="record in domain.records">
+	      <md-card-content>
+		<div layout="row">
+		  <div flex-gt-md="35" flex="30">{{record.source}}</div>
+		  <div flex-gt-md="10" flex="20">{{record.type}}</div>
+		  <div flex>{{record.dest}}</div>
+		  <div>
+		    <md-button ng-click="delRecord($event,domain,record)" aria-label="delete record">
+		      <span class="glyphicon glyphicon-trash"></span>
+		    </md-button>
+		  </div>
 		</div>
-	      </div>
-	    </md-card-content>
-	  </md-card>
-	</md-tab>
-      </md-tabs>
+	      </md-card-content>
+	    </md-card>
+	  </md-tab>
+	</md-tabs>
+      </div>
     </div>
   </body>
 </html>
