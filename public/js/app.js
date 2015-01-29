@@ -13,8 +13,8 @@ rdedns.controller('DNSCtrl', function ($scope, $http, $filter, $mdSidenav, $mdDi
 	location.href=location.href;
     });
 
-    $scope.toggleNav = function() {
-	$mdSidenav('left').toggle();
+    $scope.hideNav = function() {
+	$mdSidenav('left').close();
     };
 
     $scope.showNav = function() {
