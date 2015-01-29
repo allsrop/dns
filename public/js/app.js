@@ -18,7 +18,7 @@ rdedns.controller('DNSCtrl', function ($scope, $http, $filter, $mdSidenav, $mdDi
     };
 
     $scope.showNav = function() {
-	$mdSidenav('left').show();
+	$mdSidenav('left').open();
     };
 
     $scope.showDomainForm = function(ev) {
