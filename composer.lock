@@ -489,11 +489,11 @@
         },
         {
             "name": "ronmi/fruit",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "http://git.ronmi.tw/ronmi/fruit.git",
-                "reference": "5694e21e69fff035ad2b5e3b49b1a6a52d3e2438"
+                "reference": "3cd1a3985faa8c0a3d99babfdbc488d580912947"
             },
             "require": {
                 "corneltek/cliframework": "2.2.*",
@@ -504,8 +504,14 @@
                 "phpunit/dbunit": ">=1.2",
                 "phpunit/phpunit": "4.0.*",
                 "predis/predis": "1.1.*@dev",
+                "symfony/yaml": "*",
                 "twig/twig": "1.*",
                 "zerkalica/phpcs": "dev-master"
+            },
+            "suggest": {
+                "predis/predis": "1.1.*@dev",
+                "symfony/yaml": "*",
+                "twig/twig": "1.*"
             },
             "bin": [
                 "bin/fruit"
@@ -529,7 +535,7 @@
                 }
             ],
             "description": "Fast, lightweight and simple PHP framework",
-            "time": "2015-02-04 02:09:12"
+            "time": "2015-02-04 04:14:33"
         },
         {
             "name": "symfony/yaml",
