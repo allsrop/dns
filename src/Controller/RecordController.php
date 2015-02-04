@@ -14,6 +14,7 @@ class RecordController extends AbstractController
 {
     public function dumpAction()
     {
+        $this->plugin('lazy')->init();
         $config = $this->getSingleton()->getConfig();
         $records = new RecordCollection;
         $ret = array();
@@ -34,6 +35,7 @@ class RecordController extends AbstractController
 
     public function createAction()
     {
+        $this->plugin('lazy')->init();
         $ret = array('result' => false);
         $input = Input::allInOne();
         $domain = new Domain($input['domain']);
@@ -69,6 +71,7 @@ class RecordController extends AbstractController
 
     public function deleteAction()
     {
+        $this->plugin('lazy')->init();
         $ret = array('result' => false);
         $input = Input::allInOne();
         $record = new Record($input['id']);

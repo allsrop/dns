@@ -1,3 +1,6 @@
+[plugin]
+lazy=Fruit\Plugin\LazyRecord
+
 [pux]
 file=pux/mux.php
 

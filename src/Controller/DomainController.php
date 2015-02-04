@@ -13,6 +13,7 @@ class DomainController extends \Fruit\AbstractController
 {
     public function listAction()
     {
+        $this->plugin('lazy')->init();
         $data = array();
 
         $domains = new DomainCollection;
@@ -25,6 +26,7 @@ class DomainController extends \Fruit\AbstractController
 
     public function deleteAction()
     {
+        $this->plugin('lazy')->init();
         $params = Input::allInOne();
         $id = $params['id'];
         $domain = new Domain($id);
@@ -43,6 +45,7 @@ class DomainController extends \Fruit\AbstractController
 
     public function createAction()
     {
+        $this->plugin('lazy')->init();
         $ret = array('result' => false);
         $input = Input::allInOne();
         try {
