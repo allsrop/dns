@@ -15,11 +15,11 @@ composer.phar:
 
 update: composer.phar
 	./composer.phar install
-	vendor/bin/fruit lazy schema
+	vendor/bin/fruit lazy -c config.ini schema
 
 db:
-	vendor/bin/fruit lazy create-db
-	vendor/bin/fruit lazy sql -r
+	vendor/bin/fruit lazy -c config.ini create-db
+	vendor/bin/fruit lazy -c config.ini sql -r
 
 force-update: composer.phar 
 	./composer.phar selfupdate
