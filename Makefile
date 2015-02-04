@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-.PHONY: docs check update update-dep test phar pux
+.PHONY: docs check update update-dep test phar pux db
 
 check:
 	find src -name '*.php' -exec php -l {} \;
@@ -15,8 +15,13 @@ composer.phar:
 
 update: composer.phar
 	./composer.phar install
+	vendor/bin/fruit lazy schema
 
-force-update: composer.phar
+db:
+	vendor/bin/fruit lazy create-db
+	vendor/bin/fruit lazy sql -r
+
+force-update: composer.phar 
 	./composer.phar selfupdate
 	./composer.phar update
 

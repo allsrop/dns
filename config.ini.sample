@@ -3,4 +3,14 @@ file=pux/mux.php
 
 [dns]
 dir=conf
-ns=192.168.201.103
+ns=127.0.0.1
+
+[lazyrecord]
+autoid=1
+paths=src/Model
+data_sources=default
+
+[lazy_default]
+driver=sqlite
+database=data.db
+dsn=sqlite:data.db
