@@ -489,11 +489,11 @@
         },
         {
             "name": "ronmi/fruit",
-            "version": "0.2.1",
+            "version": "0.2.2",
             "source": {
                 "type": "git",
                 "url": "http://git.ronmi.tw/ronmi/fruit.git",
-                "reference": "3cd1a3985faa8c0a3d99babfdbc488d580912947"
+                "reference": "c7d04cc31649b76e024f01f69a358e10699f2d39"
             },
             "require": {
                 "corneltek/cliframework": "2.2.*",
@@ -535,7 +535,7 @@
                 }
             ],
             "description": "Fast, lightweight and simple PHP framework",
-            "time": "2015-02-04 04:14:33"
+            "time": "2015-02-04 04:17:57"
         },
         {
             "name": "symfony/yaml",
