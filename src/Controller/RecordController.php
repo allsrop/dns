@@ -15,6 +15,7 @@ class RecordController extends AbstractController
     public function dumpAction()
     {
         $this->plugin('lazy')->init();
+        $this->getRouter()->disableOutputInterpolate();
         $config = $this->getSingleton()->getConfig();
         $records = new RecordCollection;
         $ret = array();
@@ -66,7 +67,7 @@ class RecordController extends AbstractController
         }
         CLIHelper::update();
 
-        return json_encode($ret);
+        return $ret;
     }
 
     public function deleteAction()
@@ -81,6 +82,6 @@ class RecordController extends AbstractController
             $ret['result'] = true;
         }
         CLIHelper::update();
-        return json_encode($ret);
+        return $ret;
     }
 }

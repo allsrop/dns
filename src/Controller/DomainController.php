@@ -21,7 +21,7 @@ class DomainController extends \Fruit\AbstractController
             array_push($data, array('id' => $d->id, 'domain' => $d->domain, 'records' => $this->getRecords($d)));
         }
 
-        return json_encode($data);
+        return $data;
     }
 
     public function deleteAction()
@@ -40,7 +40,7 @@ class DomainController extends \Fruit\AbstractController
         $domain->delete();
         $ret['result'] = true;
         CLIHelper::update();
-        return json_encode($ret);
+        return $ret;
     }
 
     public function createAction()
@@ -58,7 +58,7 @@ class DomainController extends \Fruit\AbstractController
             $ret['message'] = $e->getMessage();
         }
         CLIHelper::update();
-        return json_encode($ret);
+        return $ret;
     }
 
     private function getRecords(\RDE\DNS\Model\Domain $domain)

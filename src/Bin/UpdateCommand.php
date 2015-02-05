@@ -20,7 +20,7 @@ class UpdateCommand extends Command
     {
         $l = $this->logger;
 
-        $config = IniConfig::fromFile(PROJ_DIR . '/config.ini');
+        $config = new IniConfig(PROJ_DIR . '/config.ini');
         $db = $config->getPath('dns', 'dir');
         $ns = $config->get('dns', 'ns');
 
