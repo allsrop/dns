@@ -79,4 +79,43 @@ class DomainController extends \Fruit\AbstractController
         }
         return $ret;
     }
+    //Cara ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓modifyDomain
+    public function modifyAction()
+    {
+
+        $this->plugin('lazy')->init();
+        $input = Input::allInOne();
+        $id = $input['id'];
+        $do = $input['domain'];
+
+        $data = array();
+        $domains = new DomainCollection;
+        foreach ($domains as $d) {
+            array_push($data, $d->domain);
+        }
+        $ret = array(
+            'result' => false,
+            'message' => 'params=' . var_export($input, true),
+        );
+        if (in_array($do, $data) == false) {
+            $domain = new Domain($id);
+            $domain->delete();
+            try {
+                $domain = Domain::create(array('id' => $id, 'domain' => $input['domain']));
+                if ($domain instanceof Domain and $id) {
+                    $ret['result'] = true;
+                    $ret['data'] = array('id' => $domain->id, 'domain' => $domain->domain, 'records' => $this->getRecords($domain));
+                }
+            } catch (Exception $e) {
+                $ret['message'] = $e->getMessage();
+            }
+        } else {
+            $ret['message'] = 'Record modify failed : Domain name have already exists. Domain must be unique';
+        }
+
+        CLIHelper::update();
+
+        return $ret;
+    }
+    //Cara ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑modifyDomain
 }
