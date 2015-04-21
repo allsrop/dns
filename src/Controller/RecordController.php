@@ -84,4 +84,44 @@ class RecordController extends AbstractController
         CLIHelper::update();
         return $ret;
     }
+    //Cara ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓modifyRecord
+    public function modifyAction()
+    {
+        $this->plugin('lazy')->init();
+        $ret = array('result' => false);
+        $input = Input::allInOne();
+
+        $domain = new Domain($input['domain']);
+        $record = new Record($input['id']);
+        if (
+            $domain instanceof Domain and
+            $domain->id and
+            $record->id and
+            isset($input['source']) and
+            isset($input['type']) and
+            isset($input['dest'])
+        ) {
+            $data = array(
+                'domain' => $domain->id,
+                'id' => $record->id,
+                'source' => $input['source'],
+                'type' => $input['type'],
+                'dest' => $input['dest']
+            );
+            $record->update($data);
+            if ($record->id) {
+                $domain->update(array('ver' => $domain->ver+1));
+                $ret['result'] = true;
+                $ret['data'] = array(
+                    'id' => $record->id,
+                    'source' => $record->getName(),
+                    'type' => $record->type,
+                    'dest' => $record->dest
+                );
+            }
+        }
+        CLIHelper::update();
+        return $ret;
+    }
+    //Cara ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑modifyRecord 
 }

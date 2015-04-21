@@ -79,4 +79,24 @@ class DomainController extends \Fruit\AbstractController
         }
         return $ret;
     }
+    //Cara ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓modifyDomain
+    public function modifyAction()
+    {
+        $this->plugin('lazy')->init();
+        $ret = array('result' => false);
+        $input = Input::allInOne();
+        $id = $input['id'];
+        $domain = new Domain($id);
+        try {
+            $domain->update(array('domain' => $input['domain']));
+            $ret['result'] = true;
+            $ret['data'] = array('id' => $domain->id, 'domain' => $domain->domain, 'records' => $this->getRecords($domain));
+
+        } catch (Exception $e) {
+            $ret['message'] = $e->getMessage();
+        }
+        CLIHelper::update();
+        return $ret;
+    }
+    //Cara ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑modifyDomain    
 }

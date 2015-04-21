@@ -1,0 +1,16 @@
+<md-dialog>
+    <md-content>
+        <md-subheader>
+            <h1>Modify {{domain.domain}} ?</h1>
+        </md-subheader>
+        <md-content>
+            <md-input-container>
+                <label>New Domain name</label>
+                <input ng-model="domain_name" type="text"/>
+            </md-input-container>
+        </md-content>
+    </md-content>
+    <div class="md-actions" layout="row">
+        <md-button class="md-primary" ng-click="send(domain_name)">Send</md-button>
+    </div>
+</md-dialog>

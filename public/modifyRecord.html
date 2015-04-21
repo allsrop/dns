@@ -1,0 +1,22 @@
+<md-dialog>
+    <md-subheader>
+      <h1>Modify record in {{domain.source}}</h1>
+    </md-subheader>
+    <md-content>
+        <!--<md-radio-group ng-model="type">-->
+        <!--<md-radio-button value="A">A record</md-radio-button>-->
+        <!--<md-radio-button value="CNAME">CNAME record</md-radio-button>-->
+        <!--</md-radio-group>-->
+        <md-input-container>
+            <label>Source : {{domain.source}}</label>
+            <input ng-model="source" type="text"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Target : {{domain.dest}}</label>
+            <input ng-model="dest" type="text"/>
+        </md-input-container>
+    </md-content>
+    <div class="md-actions" layout="row">
+        <md-button class="md-primary" ng-click="send(source,dest,type,domain.id)">Send</md-button>
+    </div>
+</md-dialog>
